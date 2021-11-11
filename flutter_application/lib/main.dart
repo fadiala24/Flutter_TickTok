@@ -34,7 +34,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   void _onItemTapped(int index) {
     setState(() {
-      
+
       _selectedIndex = index;
     });
   }
@@ -174,6 +174,14 @@ class PostContent extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              IconButton(
+                  icon: Icon(
+                    Icons.live_tv,
+                    color: Colors.white,
+                    size: 40,
+                  ),
+                  iconSize: 24.0,
+                  onPressed: null),
               SizedBox(width: 100),
               Text(
                 'Abonnement',
