@@ -116,11 +116,11 @@ class HomePage extends StatelessWidget {
         return Builder(
           builder: (BuildContext context) {
             return Container(
-              color: const Color(0xFF141518),
+              color:  Color(0xFF141518),
               child: Stack(
                 children: [
                   VideoWidget(videoUrl: item['video']),
-                  const PostContent()
+                   PostContent()
                 ],
               ),
             );
@@ -149,15 +149,30 @@ class _VideoWidgetState extends State<VideoWidget> {
     super.initState();
     _controller = VideoPlayerController.asset(videoUrl)
       ..initialize().then((_) {
-        _controller.setLooping(true);
-        _controller.play();
+        //_controller.setLooping(true);
+        //_controller.play();
         setState(() {});
       });
   }
 
   @override
   Widget build(BuildContext context) {
-    return VideoPlayer(_controller);
+    //detection de click
+    return GestureDetector(
+      //Quand on tape une fois ça joue
+      onTap: (){setState(() {
+        _controller.setLooping(true);
+        _controller.play();
+      });
+      },
+      //Quand on tape deux fois ça s'arrête
+      onDoubleTap: (){setState(() {
+        
+        _controller.pause();
+      });
+      },
+      child: VideoPlayer(_controller),
+    );
   }
 }
 
